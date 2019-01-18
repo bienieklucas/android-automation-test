@@ -10,8 +10,10 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ResultViewModel(private val userRepository: UserRepository,
-                      private val commandProvider: CommandProvider) : ViewModel() {
+class ResultViewModel(
+    private val userRepository: UserRepository,
+    private val commandProvider: CommandProvider
+) : ViewModel() {
 
     val command: SingleLiveEvent<GenericCommand> = commandProvider.getCommand()
 
@@ -23,7 +25,7 @@ class ResultViewModel(private val userRepository: UserRepository,
 
         GlobalScope.launch {
 
-            val user = withContext(Dispatchers.Default) {
+            val user = withContext(Dispatchers.IO) {
                 userRepository.getUserById(id)
             }
 

@@ -20,7 +20,7 @@ class InputViewModel(
     val viewState: MutableLiveData<ViewState> = MutableLiveData()
 
     data class ViewState(
-            val isSavingUser: Boolean = false
+        val isSavingUser: Boolean = false
     )
 
     sealed class Command : GenericCommand() {
@@ -37,7 +37,7 @@ class InputViewModel(
 
         GlobalScope.launch {
 
-            val savedUser = withContext(Dispatchers.Default) {
+            val savedUser = withContext(Dispatchers.IO) {
 
                 userRepository.getUserById(id)
             }
@@ -52,7 +52,7 @@ class InputViewModel(
 
         GlobalScope.launch {
 
-            val createdId = withContext(Dispatchers.Default) {
+            val createdId = withContext(Dispatchers.IO) {
                 userRepository.saveUser(name, age)
             }
 
@@ -62,15 +62,17 @@ class InputViewModel(
         }
     }
 
-    fun saveUserById(id: Long,
-                     name: String,
-                     age: String) {
+    fun saveUserById(
+        id: Long,
+        name: String,
+        age: String
+    ) {
 
         viewState.setValue(currentViewState().copy(isSavingUser = true))
 
         GlobalScope.launch {
 
-            val updatedId = withContext(Dispatchers.Default) {
+            val updatedId = withContext(Dispatchers.IO) {
                 userRepository.saveUserById(id, name, age)
             }
 
