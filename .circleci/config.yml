@@ -12,6 +12,9 @@ jobs:
         name: Build Project
         command: ./gradlew :app:assembleDebug
     - run:
+        name: Check Code Coverage
+        command: ./gradlew jacocoFullTestReport
+    - run:
         name: Run ktlint
         command: ./gradlew ktlint
     - run:
@@ -19,6 +22,3 @@ jobs:
         command: ./gradlew test
     - store_test_results:
         path: app/build/test-results
-    - run:
-        name: Check Code Coverage
-        command: ./gradlew jacocoFullTestReport
