@@ -121,7 +121,7 @@ class UserLocalDataSourceTest {
     @Test
     fun `Delete user, when it is passed user id, then verify user is deleted`() {
 
-        //ARRANGE
+        // ARRANGE
 
         val EXPECTED_USER_ID = 1L
         val EXPECTED_USER_NAME = "Zé Renato"
