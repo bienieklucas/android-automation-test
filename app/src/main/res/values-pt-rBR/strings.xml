@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Teste de Automação</string>
 
     <string name="hint_age">Idade</string>
     <string name="hint_name">Nome</string>
 
-    <string name="ok">OK</string>
+    <string name="save">Salvar</string>
     <string name="clean">Limpar campos</string>
 
     <string name="your_name">Seu nome é %s</string>
     <string name="your_age">\u0020e você tem %s anos!</string>
+
+    <string name="splash_title_description">4All - Workshop de Testes Unitários para Desenvolvedores Android</string>
+
+    <string name="user_not_found">Usuário não encontrado.</string>
+
+    <string name="no_registered_users_yet">Não há usuários cadastrados ainda</string>
 
 </resources>
