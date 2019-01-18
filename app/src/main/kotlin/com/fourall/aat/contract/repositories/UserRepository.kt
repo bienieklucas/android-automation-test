@@ -18,4 +18,6 @@ interface UserRepository {
         name: String,
         age: String
     ): Long
+
+    fun deleteUser(user: User): Int
 }

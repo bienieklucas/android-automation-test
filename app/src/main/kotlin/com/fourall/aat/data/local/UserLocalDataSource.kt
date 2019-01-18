@@ -18,4 +18,6 @@ class UserLocalDataSource(private val userDAO: UserDAO) : UserDataContract.Local
         age: String
     ): Long =
             userDAO.saveUser(User(id, name, age))
+
+    override fun deleteUser(user: User): Int = userDAO.deleteUser(user)
 }

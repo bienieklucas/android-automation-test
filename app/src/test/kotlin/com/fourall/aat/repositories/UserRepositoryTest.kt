@@ -26,7 +26,8 @@ class UserRepositoryTest {
         userRepository = UserDataRepository(userLocalDataSourceMock)
     }
 
-    @Test fun `Get users, when it is requested to obtain all users, then returns users`() {
+    @Test
+    fun `Get users, when it is requested to obtain all users, then returns users`() {
 
         // ARRANGE
 
@@ -59,7 +60,8 @@ class UserRepositoryTest {
         assertEquals(expectedUsers, users)
     }
 
-    @Test fun `Get user by id, when it is passed an id from a non existent user, then returns null`() {
+    @Test
+    fun `Get user by id, when it is passed an id from a non existent user, then returns null`() {
 
         // ARRANGE
 
@@ -76,7 +78,8 @@ class UserRepositoryTest {
         assertNull(user)
     }
 
-    @Test fun `Get user by id, when it is passed an id from an existing user, then returns user successfully`() {
+    @Test
+    fun `Get user by id, when it is passed an id from an existing user, then returns user successfully`() {
 
         // ARRANGE
 
@@ -97,7 +100,8 @@ class UserRepositoryTest {
         assertEquals(expectedUser, user)
     }
 
-    @Test fun `Save user, when it is passed user name and user age, then verify user is saved locally`() {
+    @Test
+    fun `Save user, when it is passed user name and user age, then verify user is saved locally`() {
 
         // ARRANGE
 
@@ -111,5 +115,29 @@ class UserRepositoryTest {
         // ASSERT
 
         verify(userLocalDataSourceMock, times(1)).saveUser(USER_NAME, USER_AGE)
+    }
+
+    @Test
+    fun `Delete user, when it is passed user id, then verify user is deleted`() {
+
+        // ARRANGE
+
+        val EXPECTED_USER_ID = 1L
+        val EXPECTED_USER_NAME = "Zé Renato"
+        val EXPECTED_USER_AGE = "46"
+
+        val EXPECTED_USER = User(EXPECTED_USER_ID, EXPECTED_USER_NAME, EXPECTED_USER_AGE)
+
+        val expectedDeletedRows = 1
+
+        whenever(userLocalDataSourceMock.deleteUser(EXPECTED_USER)).thenReturn(expectedDeletedRows)
+
+        // ACT
+
+        val deletedRows = userRepository.deleteUser(EXPECTED_USER)
+
+        // ASSERT
+
+        assertEquals(expectedDeletedRows, deletedRows)
     }
 }
